@@ -6,13 +6,26 @@ describe("The getBodyFromRequest function", () => {
 
   beforeEach(() => {
     fakeReq = new EventEmitter();
+
   });
 
-  it('returns an empty string for no body', done => {
-    expect.fail('please write this test');
+  it('returns an empty string for no body', () => {
+
+    const result = getBodyFromRequest(fakeReq)
+    fakeReq.emit('end')
+
+    return result.then(body => {
+        expect(body).to.equal('');
+    })
   });
 
-  it('returns the data read from the stream', done => {
-    expect.fail('please write this test');
+  it('returns the data read from the stream', () => {
+    const result = getBodyFromRequest(fakeReq)
+    fakeReq.emit('data', 'categoryName=Not+very+fun')
+    fakeReq.emit('end')
+
+    return result.then(body => {
+        expect(body).to.equal('categoryName=Not+very+fun');
+    })
   });
 });
