@@ -1,13 +1,13 @@
-function getBodyFromRequest(req) {
-  let data = '';
+function getBodyFromRequest (req) {
+  let data = ''
   return new Promise(resolve => {
     req.on('data', chunk => {
-      data += chunk;
-    });
+      data += chunk
+    })
     req.on('end', () => {
-      resolve(data);
-    });
-  });
+      resolve(data)
+    })
+  })
 }
 
-exports.getBodyFromRequest = getBodyFromRequest;
+exports.getBodyFromRequest = getBodyFromRequest
